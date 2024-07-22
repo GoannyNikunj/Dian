@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4;">
+
+<div class="slider-container" style="position: relative; width: 80%; max-width: 800px; margin: 50px auto; overflow: hidden; border: 5px solid #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+  <div class="slider" style="display: flex; transition: transform 0.5s ease;">
+    <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1" style="width: calc(100% / 3); height: auto;">
+    <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2" style="width: calc(100% / 3); height: auto;">
+    <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3" style="width: calc(100% / 3); height: auto;">
+    <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4" style="width: calc(100% / 3); height: auto;">
+    <img src="https://via.placeholder.com/800x400?text=Image+5" alt="Image 5" style="width: calc(100% / 3); height: auto;">
+    <img src="https://via.placeholder.com/800x400?text=Image+6" alt="Image 6" style="width: calc(100% / 3); height: auto;">
+  </div>
+  <button class="prev" onclick="moveSlide(-1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: #fff; border: none; font-size: 24px; padding: 10px; cursor: pointer; z-index: 1; left: 0;">&#10094;</button>
+  <button class="next" onclick="moveSlide(1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: #fff; border: none; font-size: 24px; padding: 10px; cursor: pointer; z-index: 1; right: 0;">&#10095;</button>
+  <div class="slide-indicators" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex;"></div>
+</div>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slider img');
+  const indicatorsContainer = document.querySelector('.slide-indicators');
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+
+  // Create slide indicators
+  slides.forEach((_, index) => {
+    const indicator = document.createElement('div');
+    indicator.classList.add('indicator');
+    if (index === slideIndex) {
+      indicator.classList.add('active');
+    }
+    indicator.addEventListener('click', () => {
+      goToSlide(index);
+    });
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  function moveSlide(n) {
+    slideIndex += n;
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    slideIndex = index;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    const offset = slideIndex * -(100 / 3);
+    document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+    const indicators = document.querySelectorAll('.indicator');
+    indicators.forEach((indicator, index) => {
+      if (index === slideIndex) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+
+    // Hide or show the arrows based on slideIndex
+    if (slideIndex === 0) {
+      prevButton.style.display = 'none';
+    } else {
+      prevButton.style.display = 'block';
+    }
+
+    if (slideIndex === slides.length - 3) {
+      nextButton.style.display = 'none';
+    } else {
+      nextButton.style.display = 'block';
+    }
+  }
+
+  // Initial call to updateSlider to set initial arrow visibility
+  updateSlider();
+</script>
+
+</body>
+</html>

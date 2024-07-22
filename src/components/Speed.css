@@ -1,0 +1,66 @@
+*{
+    --c1: #FF495F;
+    --c2: #FF4995;
+    --c3: #FDD774;
+    --c4: #19CCB7;
+    --c5: #23B473;
+}
+
+.speedometer{
+    width: 250px;
+    height: 40vh;
+    padding: 60px;
+    border-radius: 50%;
+    background: 
+    radial-gradient(#ffff 0 0) content-box,
+    conic-gradient(
+        from -90deg,
+        var(--c1) 36deg,
+        var(--c2) 0 72deg,
+        var(--c3) 0 108deg,
+        var(--c4) 0 144deg,
+        var(--c5) 0 180deg,
+        #0000 0
+    );
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.needle{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    padding: 30px;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: 
+    conic-gradient(
+        from 175deg at 50% 55%,
+        #ccc 3deg,
+        /* #000 3deg 7deg, */
+        /* #ccc 8deg 10deg, */
+        #FFF 3deg 7deg,
+        #FFF 8deg 10deg,
+        #0000 0
+    ) 0 -60px no-repeat,
+    radial-gradient(
+        #FFF 0 30%,
+        /* #000 0 30%, */
+        /* #ccc 51% */
+        #FFF 51%
+    ) content-box;
+    rotate: calc(cos(var(--score) * 180deg / 100) * -90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score{
+    rotate: calc(cos(var(--score) * 180deg / 100) * 90deg);
+    font-size: 14px;
+    font-weight: 800;
+    color: #ccc;
+}

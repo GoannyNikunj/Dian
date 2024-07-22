@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Colored Outer Circle</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .outer-circle {
+            width: 200px; 
+            height: 200px; 
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .outer-circle::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                pink 0deg 18deg,
+                red 18deg 54deg,
+                silver 54deg 90deg,
+                transparent 90deg 270deg,
+                yellow 270deg 306deg,
+                blue 306deg 342deg,
+                pink 342deg 360deg
+            );
+        }
+
+        .outer-circle::after {
+            content: "";
+            position: absolute;
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%;
+            background: #f0f0f0; 
+            background-size: 40px 40px; /* Set the width and height of the background image */
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    /* transform: rotate(90deg); */
+    transform: rotate(0deg);
+    /* background-position: 50% calc(50% - 20px); */
+    background-position: 50% calc(50% - 0px);
+        }
+
+        .outer-circle::after {
+    background-image: url('http://localhost:5173/src/assets/images/svg/Needle.svg'); /* Set your image URL here */
+}
+
+        .inner-circle {
+            width: 100px;  
+            height: 100px; 
+            background: conic-gradient(
+                transparent 0deg 1deg,
+                green 1deg 89deg,
+                transparent 89deg 271deg,
+                green 271deg 359deg,
+                transparent 359deg 360deg
+            ); 
+            border-radius: 50%;
+        }
+
+        .image {
+            position: absolute;
+            width: 20px; /* Adjust the size as needed */
+            height: 20px; /* Adjust the size as needed */
+        }
+
+        .image-1 { transform: rotate(196deg) translate(75px) ; }
+        .image-2 { transform: rotate(232deg) translate(75px) ; }
+        .image-3 { transform: rotate(268deg) translate(75px) ; }
+        .image-4 { transform: rotate(304deg) translate(75px) ; }
+        .image-5 { transform: rotate(340deg) translate(75px) ; }
+    </style>
+</head>
+<body>
+    <div class="outer-circle">
+        <div class="inner-circle"></div>
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600" class="image image-1">
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600" class="image image-2">
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600" class="image image-3">
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600" class="image image-4">
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600" class="image image-5">
+    </div>
+</body>
+</html>
